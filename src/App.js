@@ -18,8 +18,12 @@ export const TOKEN_STORAGE_ID = "jobly-token";
  *  - currentUser: 
  *      User obj from API. Once retrieved, it is stored in context (CurrentUserContext). 
  *      Read by other components to see if user is logged in
- *        { username, firstName, lastName, isAdmin, jobs }
- *          where jobs is { id, title, companyHandle, companyName, state }
+ *        { username, firstName, lastName, isAdmin, applications }
+ *          where applications is { job_id: true,... }
+ * 
+ * - applications:
+ *      Current user applications
+ *        { job_id: true,... }
  * 
  *  - token: 
  *      Authentication JWT received when a user logs in / signs up
@@ -33,6 +37,7 @@ export const TOKEN_STORAGE_ID = "jobly-token";
 */
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
+  const [applications, setApplications] = useState(null);
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
   const [infoLoaded, setInfoLoaded] = useState(false);
   // const [token, setToken] = useState(storedToken || null);
@@ -48,6 +53,7 @@ function App() {
           JoblyApi.token = token;
           const user = await JoblyApi.getUser(payload.username);
           setCurrentUser(user);
+          setApplications(user.applications);
         } catch (errors) {
           console.error('Error loading the user!', errors)
           setCurrentUser(null);
@@ -114,16 +120,34 @@ function App() {
     setCurrentUser(null);
   }
 
+  async function applyToJob(jobId) {
+    try {
+      await JoblyApi.applyForJob(currentUser.username, jobId);
+      // console.log('newApplicationId in App.js', newApplicationId);
+      setApplications( (applications) => ({...applications, [jobId]: true}));
+      setCurrentUser( currentUser => {
+        const currentUserCopy = {...currentUser};
+        currentUserCopy.applications = {...applications, [jobId]: true};
+        return currentUserCopy;
+      })
+      return { success: true };
+    } catch (errors) {
+      console.error(errors);
+      return { succcess: false, errors};
+    }
+  }
+
   if (!infoLoaded) return <h2>Waiting</h2>
 
   return (
       <BrowserRouter>
-        <CurrentUserContext.Provider value={{currentUser, setCurrentUser}}>
+        <CurrentUserContext.Provider value={{currentUser, setCurrentUser, applications, setApplications}}>
           <NavBar logout={logout} />
           <Routes
             signup={signup}
             login={login}
             updateProfile={updateProfile}
+            applyToJob={applyToJob}
           />
         </CurrentUserContext.Provider>
       </BrowserRouter>

@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
  *            If it cannot be found, uses 'firstValue' (defaults to null)
  * 
  * When item changes, effect reruns. 
- *  - if item is null, previous value for item is removed from local storage
+ *  - if item is null, key/item pair is removed from local storage
  *  - otherwise, item value is updated in local storage
  * 
  * For components, this custom hook is no different from saving something in state. (Indeed, we 
@@ -23,13 +23,14 @@ function useLocalStorage(key, firstValue = null) {
   const initialValue = localStorage.getItem(key) || firstValue;
 
   const [item, setItem] = useState(initialValue);
+  console.log('in local storage. key:', key);
 
   useEffect(function setKeyInLocalStorage() {
     // console.log('in useLocalStorage effect hook');
     // console.log('in useLocalStorage effect hook. Key:', key);
     // console.log('in useLocalStorage effect hook. Item:', item);
 
-
+    // TODO: How does useLocalStorage remember the key value after the hook initially runs?
     if (item === null) {
       localStorage.removeItem(key);
     } else {

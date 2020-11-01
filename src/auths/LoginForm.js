@@ -3,10 +3,15 @@ import { useHistory } from 'react-router-dom';
 import AlertMessages from '../common/AlertMessages';
 
 function LoginForm(props) {
-  const { initialFromData, login } = props
-  const [formData, setFormData] = useState(initialFromData)
+  const { initialFormData, login } = props
+  const [formData, setFormData] = useState(initialFormData)
   const [formErrors, setFormErrors] = useState([]);
   const history = useHistory();
+
+  console.log('login formErrors:', formErrors);
+  console.log('login formData:', formData);
+  console.log('login username:', formData.username);
+  
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -26,14 +31,13 @@ function LoginForm(props) {
   }
   return (
     <div>
-
       {formErrors.length
         ? <AlertMessages
             type='danger'
             message={formErrors} 
           />
         : null}
-        
+
       <form className="LoginForm" onSubmit={handleSubmit}>
 
         <div className="form-group">
@@ -68,8 +72,8 @@ function LoginForm(props) {
 
 //TODO: Remove these before deploying
 LoginForm.defaultProps = {
-  initialFromData: {
-    username: "testuser",
+  initialFormData: {
+    username: "testuser2",
     password: "password"
   }
 }

@@ -14,7 +14,7 @@ function AlertMessages({ type = 'danger', messages = [] }) {
         color={type}
         isOpen={visible}
         toggle={onDismiss}
-        dismissable
+        dismissable='true'
       >
         {messages.map(message => (
           <p className='mb-0 small' key={message}>

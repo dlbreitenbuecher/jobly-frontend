@@ -270,6 +270,7 @@ class JoblyApi {
    */
   static async applyForJob(username, jobId){
     const res = await this.request(`users/${username}/jobs/${jobId}`, {}, "post");
+    console.log('In JoblyAPI. applyForJob returns {jobId}:', res.applied);
     return res.applied
   }
 }

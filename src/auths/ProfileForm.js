@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import CurrentUserContext from './CurrentUserContext';
 import AlertMessages from '../common/AlertMessages';
+import { useHistory } from 'react-router-dom';
 
 
 /**Display signup Form
@@ -17,7 +18,8 @@ import AlertMessages from '../common/AlertMessages';
  */
 function ProfileForm({ updateProfile }) {
   const [formErrors, setFormErrors] = useState([]);
-  const currentUser = useContext(CurrentUserContext);
+  const [formSuccess, setFormSuccess] = useState(false);
+  const { currentUser } = useContext(CurrentUserContext);
 
   let initialFormData = {
     firstName: currentUser.firstName,
@@ -35,19 +37,26 @@ function ProfileForm({ updateProfile }) {
     setFormData(formData => ({
       ...formData, [name]: value
     }));
+    setFormErrors([]);
+    setFormSuccess(false);
   }
 
   // console.log('formData', formData);
   async function handleSubmit(evt) {
     evt.preventDefault();
-    try {
-      await updateProfile(formData); //re-renders app.js, needs some time 
-    } catch (err) {
-      setFormErrors(err);
-    }
-    setFormData({ ...formData, 'password': '' });
-  }
 
+    const result = await updateProfile(formData);
+
+    if (result.success) {
+      setFormSuccess(true);
+    } else {
+      setFormErrors(result.errors);
+      return;
+    }
+    // the current user context is updated in the updateProfile fn in App.js 
+    setFormData({...formData, 'password': ''});
+    setFormErrors([]);
+  }
 
   return (
     <div>
@@ -55,7 +64,11 @@ function ProfileForm({ updateProfile }) {
       {formErrors.length
         ? <AlertMessages type='danger' messages={formErrors} />
         : null}
-        
+
+      {formSuccess
+        ? <AlertMessages type='success' messages={['Profile updated successfully!']} />
+        : null}
+
       <form onSubmit={handleSubmit} className='SignupForm'>
         <div className='form-group'>
           <label>Username</label>
