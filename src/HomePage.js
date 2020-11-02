@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { Jumbotron } from 'reactstrap';
 import CurrentUserContext from './auths/CurrentUserContext.js'
 
 function HomePage() {
@@ -9,7 +10,7 @@ function HomePage() {
     if (currentUser) {
       return (
         <>
-          <h1>Welcome Back, {currentUser.username}</h1>
+          <h3>Welcome Back, {currentUser.username}</h3>
         </>
       )
     } else {
@@ -24,15 +25,11 @@ function HomePage() {
 
   return (
     <div className="HomePage">
-      <div>
-        <h1>Jobly</h1>
-      </div>
-      <div>
-        <p>All the jobs in one, convenient place.</p>
-      </div>
-      <div>
+      <Jumbotron>
+          <h1>Jobly</h1>
+          <p>Apply Yourself</p>
           {renderWelcomeMsgOrButtons()}
-      </div>
+      </Jumbotron>
     </div>
   )
 }

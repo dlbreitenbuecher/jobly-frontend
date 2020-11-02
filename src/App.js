@@ -19,11 +19,11 @@ export const TOKEN_STORAGE_ID = "jobly-token";
  *      User obj from API. Once retrieved, it is stored in context (CurrentUserContext). 
  *      Read by other components to see if user is logged in
  *        { username, firstName, lastName, isAdmin, applications }
- *          where applications is { job_id: true,... }
+ *          where applications is [jobID,...]
  * 
- * - applications:
+ * - applicationID:
  *      Current user applications
- *        { job_id: true,... }
+ *        (Set) [jobID,...]
  * 
  *  - token: 
  *      Authentication JWT received when a user logs in / signs up
@@ -37,7 +37,7 @@ export const TOKEN_STORAGE_ID = "jobly-token";
 */
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
-  const [applications, setApplications] = useState(null);
+  const [applicationIDs, setApplicationIDs] = useState( new Set([]));
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
   const [infoLoaded, setInfoLoaded] = useState(false);
   // const [token, setToken] = useState(storedToken || null);
@@ -53,7 +53,7 @@ function App() {
           JoblyApi.token = token;
           const user = await JoblyApi.getUser(payload.username);
           setCurrentUser(user);
-          setApplications(user.applications);
+          setApplicationIDs(new Set(user.applications));
         } catch (errors) {
           console.error('Error loading the user!', errors)
           setCurrentUser(null);
@@ -120,20 +120,21 @@ function App() {
     setCurrentUser(null);
   }
 
-  async function applyToJob(jobId) {
+  /**Returns true if jobID is in applicationID state. Otherwise returns false */
+  function hasApplicationID(jobID) {
+    return applicationIDs.has(jobID);
+  }
+
+  /**Apply to job. Updates DB in backend through joblyAPI and updates applicationIDs state */
+  async function applyToJob(jobID) {
+    if (hasApplicationID(jobID)) return;
+
     try {
-      await JoblyApi.applyForJob(currentUser.username, jobId);
-      // console.log('newApplicationId in App.js', newApplicationId);
-      setApplications( (applications) => ({...applications, [jobId]: true}));
-      setCurrentUser( currentUser => {
-        const currentUserCopy = {...currentUser};
-        currentUserCopy.applications = {...applications, [jobId]: true};
-        return currentUserCopy;
-      })
+      await JoblyApi.applyForJob(currentUser.username, jobID);
+      setApplicationIDs(new Set([...applicationIDs, jobID]));
       return { success: true };
     } catch (errors) {
-      console.error(errors);
-      return { succcess: false, errors};
+      return { success: false, errors };
     }
   }
 
@@ -141,13 +142,12 @@ function App() {
 
   return (
       <BrowserRouter>
-        <CurrentUserContext.Provider value={{currentUser, setCurrentUser, applications, setApplications}}>
+        <CurrentUserContext.Provider value={{currentUser, setCurrentUser, hasApplicationID, applyToJob}}>
           <NavBar logout={logout} />
           <Routes
             signup={signup}
             login={login}
             updateProfile={updateProfile}
-            applyToJob={applyToJob}
           />
         </CurrentUserContext.Provider>
       </BrowserRouter>

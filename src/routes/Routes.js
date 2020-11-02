@@ -20,7 +20,6 @@ import ProtectedRoute from './ProtectedRoute.js';
  *   - signup (for signup form)
  *   - login (for login form)
  *   - updateProfile (for edit profile form)
- *   - applyToJob (fn to change application state)
  * 
  * App -> Routes -> {
  *                    HomePage, CompanyList, 
@@ -29,7 +28,7 @@ import ProtectedRoute from './ProtectedRoute.js';
  *                    ProfileForm
  *                  }
  * */
-function Routes({ signup, login, updateProfile, applyToJob }) {
+function Routes({ signup, login, updateProfile }) {
 
   return (
     <div className="Routes">
@@ -44,11 +43,11 @@ function Routes({ signup, login, updateProfile, applyToJob }) {
       </ProtectedRoute>
 
       <ProtectedRoute exact path="/companies/:companyName" >
-        <CompanyDetail applyToJob={applyToJob} />
+        <CompanyDetail />
       </ProtectedRoute>
 
       <ProtectedRoute exact path="/jobs" >
-        <JobCardList applyToJob={applyToJob} />
+        <JobCardList />
       </ProtectedRoute>
 
       <Route exact path="/login" >

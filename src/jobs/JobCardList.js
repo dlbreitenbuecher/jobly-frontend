@@ -5,20 +5,18 @@ import SearchForm from '../common/SearchForm';
 
 /**Renders a list of Job Cards
  * 
- * Props:
- * -Jobs [{id, title, salary, equity, companyHandle}]
- * - applyToJob (fn to change application state in App.js)
- *     (passed to JobCard)
- * 
  * State:
- * -searchTerm
- * -jobs
- * -isLoading
+ * -searchTerm 
+ *    (String)
+ * -jobs 
+ *    [{id, title, salary, equity, companyHandle}]
+ * -isLoading 
+ *    true/false
  * 
  * CompanyDetail -> JobCardList -> JobCard
  */
 
-function JobCardList({ applyToJob }) {
+function JobCardList() {
   const [searchTerm, setSearchTerm] = useState(null)
   const [jobs, setJobs] = useState(null)
   const [isLoading, setIsLoading] = useState(true);
@@ -45,7 +43,7 @@ function JobCardList({ applyToJob }) {
       return (
         <div>
           {jobs.map(job => (
-            <JobCard key={job.id} job={job} applyToJob={applyToJob} />
+            <JobCard key={job.id} job={job} />
           ))}
         </div>
       )

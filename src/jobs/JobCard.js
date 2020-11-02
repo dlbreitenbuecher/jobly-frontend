@@ -1,24 +1,27 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import CurrentUserContext from '../auths/CurrentUserContext';
 
 /**Display JobCard
- * Details the 
+ * Details the job title, company name, salary, and equity. 
+ * Allows a user to apply for a job
  * 
  * Props:
  * - job {id, title, salary, equity, companyHandle}
- * - applyToJob (fn to change application state in App.js)
  * 
- * Context: CurrentUserContext - applications
- *    Where applications is { job_id: true,... }
+ * Context:
+ * - hasApplicationID: 
+ *      fn that returns true if user has already applied for job
+ *      otherwise returns false
+ * 
+ * - applyToJob: 
+ *      fn that updates both the database and the applicationIDs state
+ *      in App.js
  * 
  * JobCardList -> JobCard
  */
-function JobCard({ job, applyToJob }) {
-  const { applications } = useContext(CurrentUserContext);
-  const [applied, setApplied] = useState((job.id in applications));
-
-  // console.log('applications in JobCard', applications);
-  // console.log('applied in JobCard', applied);
+function JobCard({ job }) {
+  const { hasApplicationID, applyToJob } = useContext(CurrentUserContext);
+  const [applied, setApplied] = useState(hasApplicationID(job.id));
 
   async function handleClick() {
     const result = await applyToJob(job.id);
@@ -28,11 +31,14 @@ function JobCard({ job, applyToJob }) {
       console.error(result.errors);
     }
   }
+
   return (
     <div className='JobCard card'>
       <div className="card-body">
         <h6 className="card-title">{job.title}</h6>
-        {job.companyName ? <h2>{job.companyName}</h2> : null}
+        {job.companyName 
+          ? <h2>{job.companyName}</h2> 
+          : null}
         <p>Salary: {job.salary}</p>
         <p>Equity: {job.equity ? job.equity : 0}</p>
 
