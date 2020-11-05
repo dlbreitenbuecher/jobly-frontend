@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from "react-router-dom";
 import decode from 'jwt-decode';
 import Routes from './routes/Routes';
-import NavBar from './nav/NavBar';
+import NavigationBar from './nav/NavigationBar';
 import CurrentUserContext from './auths/CurrentUserContext';
 import JoblyApi from './apis/JoblyAPI';
 import useLocalStorage from './hooks/useLocalStorage';
@@ -37,7 +37,7 @@ export const TOKEN_STORAGE_ID = "jobly-token";
 */
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
-  const [applicationIDs, setApplicationIDs] = useState( new Set([]));
+  const [applicationIDs, setApplicationIDs] = useState(new Set([]));
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
   const [infoLoaded, setInfoLoaded] = useState(false);
   // const [token, setToken] = useState(storedToken || null);
@@ -83,7 +83,7 @@ function App() {
       return { success: true };
     } catch (errors) {
       console.error('Signup Unsuccessful!', errors);
-      return { success: false, errors};
+      return { success: false, errors };
     }
   }
 
@@ -99,7 +99,7 @@ function App() {
       return { success: true };
     } catch (errors) {
       console.error('Login Unsuccessful!', errors);
-      return { success: false, errors};
+      return { success: false, errors };
     }
   }
 
@@ -109,9 +109,9 @@ function App() {
       const user = await JoblyApi.updateUser(currentUser.username, updateData);
       setCurrentUser(user);
       return { success: true };
-    } catch(errors) {
+    } catch (errors) {
       console.error('User Profile Update Unsuccessful!', errors);
-      return { success: false, errors};
+      return { success: false, errors };
     }
   }
 
@@ -141,16 +141,18 @@ function App() {
   if (!infoLoaded) return <h2>Waiting</h2>
 
   return (
-      <BrowserRouter>
-        <CurrentUserContext.Provider value={{currentUser, setCurrentUser, hasApplicationID, applyToJob}}>
-          <NavBar logout={logout} />
+    <BrowserRouter>
+      <CurrentUserContext.Provider value={{ currentUser, setCurrentUser, hasApplicationID, applyToJob }}>
+        <div className='App'>
+          <NavigationBar logout={logout} />
           <Routes
             signup={signup}
             login={login}
             updateProfile={updateProfile}
           />
-        </CurrentUserContext.Provider>
-      </BrowserRouter>
+        </div>
+      </CurrentUserContext.Provider>
+    </BrowserRouter>
   );
 }
 

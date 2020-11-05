@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { Jumbotron } from 'reactstrap';
 import CurrentUserContext from './auths/CurrentUserContext.js'
+import cityScape from './assets/vecteezy_vector-illustration-of-urban-landscape-with-city-skyline-and-building-isolated-on-white-background_655246/city_scape-01.jpg'
+import './HomePage.css';
 
 function HomePage() {
   const { currentUser } = useContext(CurrentUserContext);
@@ -10,14 +11,14 @@ function HomePage() {
     if (currentUser) {
       return (
         <>
-          <h3>Welcome Back, {currentUser.username}</h3>
+          <p className='username'>Welcome Back, {currentUser.username}</p>
         </>
       )
     } else {
       return (
         <>
-          <Link className="btn btn-primary" to="/login"> Log in </Link>
-          <Link className="btn btn-primary" to="/signup"> Sign Up</Link>
+          <Link className="btn btn-primary font-weight-bold mr-3" to="/login"> Log in </Link>
+          <Link className="btn btn-primary font-weigh-bold" to="/signup"> Sign Up</Link>
         </>
       )
     }
@@ -25,11 +26,14 @@ function HomePage() {
 
   return (
     <div className="HomePage">
-      <Jumbotron>
-          <h1>Jobly</h1>
-          <p>Apply Yourself</p>
+      <div className='HomePage-image'>
+        <div className='container text-center'>
+          <div className='text-center pt-5'>
+          <h1 className='mb-4 font-weight-bold'>Jobly <p className='lead pl-3 d-inline'>Apply Yourself</p></h1>
           {renderWelcomeMsgOrButtons()}
-      </Jumbotron>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
