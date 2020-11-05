@@ -16,9 +16,6 @@ import AlertMessages from '../common/AlertMessages';
  * App -> Route (/signup) -> SignupForm
  */
 function SignupForm({ initialFormData, signup }) {
-  console.log('******SignupForm intitialFormData:', initialFormData)
-  console.log('******SignupForm signup:', signup);
-
   const [formErrors, setFormErrors] = useState([]);
   const [formData, setFormData] = useState(initialFormData);
   const history = useHistory();

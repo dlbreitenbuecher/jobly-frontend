@@ -2,22 +2,18 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import AlertMessages from '../common/AlertMessages';
 
-function LoginForm(props) {
-  const { initialFormData, login } = props
+function LoginForm({ initialFormData, login }) {
   const [formData, setFormData] = useState(initialFormData)
   const [formErrors, setFormErrors] = useState([]);
   const history = useHistory();
 
-  console.log('login formErrors:', formErrors);
-  console.log('login formData:', formData);
-  console.log('login username:', formData.username);
-  
 
   function handleChange(evt) {
     const { name, value } = evt.target;
     setFormData(formData => ({
       ...formData, [name]: value
     }))
+    setFormErrors([]);
   }
 
   async function handleSubmit(evt) {
@@ -29,43 +25,53 @@ function LoginForm(props) {
       setFormErrors(result.errors);
     }
   }
+
   return (
-    <div>
-      {formErrors.length
-        ? <AlertMessages
-            type='danger'
-            message={formErrors} 
-          />
-        : null}
+    <div className="LoginForm">
+      <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+        <h3 className="mb-3 mt-5">Log In</h3>
+        <div className="card">
+          <div className="card-body">
 
-      <form className="LoginForm" onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
 
-        <div className="form-group">
-          <input
-            id="login-username"
-            name="username"
-            className="form-control"
-            placeholder="Username"
-            onChange={handleChange}
-            value={formData.username}
-            aria-label="Username"
-          />
+              <div className="form-group">
+                <label for='login-username'>Username</label>
+                <input
+                  id="login-username"
+                  name="username"
+                  className="form-control"
+                  placeholder="Username"
+                  onChange={handleChange}
+                  value={formData.username}
+                  aria-label="Username"
+                />
+              </div>
+
+              <div className="form-group">
+                <label for='login-password'>Password</label>
+                <input
+                  id="login-password"
+                  name="password"
+                  className="form-control"
+                  placeholder="Password"
+                  onChange={handleChange}
+                  value={formData.password}
+                  aria-label="Password"
+                />
+              </div>
+
+              {formErrors.length
+                ? <AlertMessages
+                  type='danger'
+                  messages={formErrors}
+                />
+                : null}
+              <button className="btn btn-primary">Submit</button>
+            </form>
+          </div>
         </div>
-
-        <div className="form-group">
-          <input
-            id="login-password"
-            name="password"
-            className="form-control"
-            placeholder="Password"
-            onChange={handleChange}
-            value={formData.password}
-            aria-label="Password"
-          />
-        </div>
-
-        <button className="btn btn-primary">Submit</button>
-      </form>
+      </div>
     </div>
   )
 }

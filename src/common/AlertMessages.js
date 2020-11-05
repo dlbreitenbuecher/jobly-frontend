@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Alert, Button } from 'reactstrap';
-
 function AlertMessages({ type = 'danger', messages = [] }) {
   const [visible, setVisible] = useState(true);
 
@@ -13,8 +12,8 @@ function AlertMessages({ type = 'danger', messages = [] }) {
       <Alert
         color={type}
         isOpen={visible}
-        toggle={onDismiss}
-        dismissable='true'
+        // toggle={onDismiss}
+        // dismissable='true'
       >
         {messages.map(message => (
           <p className='mb-0 small' key={message}>
@@ -25,14 +24,14 @@ function AlertMessages({ type = 'danger', messages = [] }) {
     )
   }
 
-  return (
-    <Button 
-      onClick={() => setVisible(true)}
-      className='m-3'
-    >
-      Show Alerts
-    </Button>
-  )
+  // return (
+  //   <Button 
+  //     onClick={() => setVisible(true)}
+  //     className='m-3'
+  //   >
+  //     Show Alerts
+  //   </Button>
+  // )
 }
 
 export default AlertMessages;
