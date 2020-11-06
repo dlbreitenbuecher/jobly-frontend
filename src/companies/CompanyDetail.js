@@ -35,7 +35,7 @@ function CompanyDetail() {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <div className="CompanyDetail">
+    <div className="CompanyDetail col-md-8 offset-md-2">
       <h2>{company.name}</h2>
       <p>{company.description}</p>
       {renderJobs()}

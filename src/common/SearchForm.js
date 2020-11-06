@@ -14,8 +14,7 @@ import {useHistory} from 'react-router-dom'
  * { CompanyList, JobsList } -> SearchForm
  */
 //TODO:improve comments about props and historyRoute
-function SearchForm(props) {
-  const {addSearchFilters, formInputNameAttr, redirectRoute} = props
+function SearchForm({ addSearchFilters, formInputNameAttr, redirectRoute }) {
   const [formData, setFormData] = useState({});
   const history = useHistory();
 
