@@ -36,7 +36,7 @@ function LoginForm({ initialFormData, login }) {
             <form onSubmit={handleSubmit}>
 
               <div className="form-group">
-                <label for='login-username'>Username</label>
+                <label htmlFor='login-username'>Username</label>
                 <input
                   id="login-username"
                   name="username"
@@ -49,7 +49,7 @@ function LoginForm({ initialFormData, login }) {
               </div>
 
               <div className="form-group">
-                <label for='login-password'>Password</label>
+                <label htmlFor='login-password'>Password</label>
                 <input
                   id="login-password"
                   name="password"
@@ -79,7 +79,7 @@ function LoginForm({ initialFormData, login }) {
 //TODO: Remove these before deploying
 LoginForm.defaultProps = {
   initialFormData: {
-    username: "testuser2",
+    username: "testuser3",
     password: "password"
   }
 }
