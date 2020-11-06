@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import JobCard from './JobCard';
-import JoblyAPI from '../apis/JoblyAPI'
+import JoblyAPI from '../apis/JoblyAPI';
 import SearchForm from '../common/SearchForm';
+import LoadingSpinner from '../common/LoadingSpinner';
 
 /**Renders a list of Job Cards
  * 
@@ -53,7 +54,7 @@ function JobCardList() {
       )
     }
   }
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading) return <LoadingSpinner />;
 
   return (
     <div className='JobCardList'>

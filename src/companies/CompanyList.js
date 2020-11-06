@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import JoblyAPI from '../apis/JoblyAPI';
 import CompanyCard from './CompanyCard'
 import SearchForm from '../common/SearchForm'
+import LoadingSpinner from '../common/LoadingSpinner';
 
 /**Display list of company cards and searchbar (to filter displayed companies) 
  * 
@@ -46,7 +47,7 @@ function CompanyList() {
     }
   }
 
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading) return LoadingSpinner;
 
   return (
     <div className='CompanyList'>

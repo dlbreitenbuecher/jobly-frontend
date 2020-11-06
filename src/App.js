@@ -6,6 +6,7 @@ import NavigationBar from './nav/NavigationBar';
 import CurrentUserContext from './auths/CurrentUserContext';
 import JoblyApi from './apis/JoblyAPI';
 import useLocalStorage from './hooks/useLocalStorage';
+import LoadingSpinner from './common/LoadingSpinner';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -138,7 +139,7 @@ function App() {
     }
   }
 
-  if (!infoLoaded) return <h2>Waiting</h2>
+  if (!infoLoaded) return <LoadingSpinner />;
 
   return (
     <BrowserRouter>

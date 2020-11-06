@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom";
-import JoblyAPI from '../apis/JoblyAPI'
-import JobCard from '../jobs/JobCard'
+import JoblyAPI from '../apis/JoblyAPI';
+import JobCard from '../jobs/JobCard';
+import LoadingSpinner from '../common/LoadingSpinner';
 
 //TODO:ASK can we render view from useEffect
 
@@ -31,7 +32,7 @@ function CompanyDetail() {
     )
   }
 
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading) return <LoadingSpinner />;
 
   return (
     <div className="CompanyDetail">
