@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import CurrentUserContext from '../auths/CurrentUserContext';
+import './JobCard.css';
 
 /**Display JobCard
  * Details the job title, company name, salary, and equity. 
@@ -35,16 +36,22 @@ function JobCard({ job }) {
   return (
     <div className='JobCard card'>
       <div className="card-body">
-        <h6 className="card-title">{job.title}</h6>
-        {job.companyName 
-          ? <h2>{job.companyName}</h2> 
+        <h6 className="card-title text-left">{job.title}</h6>
+        {job.companyName
+          ? <h2 className='text-left'>{job.companyName}</h2>
           : null}
-        <p>Salary: {job.salary}</p>
-        <p>Equity: {job.equity ? job.equity : 0}</p>
+        <p className='text-left'>Salary: {job.salary}</p>
 
-        {!applied
-          ? <button onClick={handleClick}>Apply</button>
-          : <button disabled>Applied</button>}
+        <button
+          className='btn btn-danger font-weight-bold text-uppercase float-right'
+          disabled={applied}
+          onClick={handleClick}
+        >
+          {applied ? 'Applied' : 'Apply'}
+        </button>
+        
+        <p className='text-left'>Equity: {job.equity ? job.equity : 0}</p>
+        
       </div>
     </div>
   )

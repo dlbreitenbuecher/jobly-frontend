@@ -57,7 +57,7 @@ function JobCardList() {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <div className='JobCardList'>
+    <div className='JobCardList col-md-6 offset-md-3'>
       <SearchForm
         addSearchFilters={search}
         formInputNameAttr="title"
