@@ -12,10 +12,10 @@ function CompanyCard({ company }) {
   return (
     <Link className="CompanyCard card" to={`/companies/${company.handle}`}>
       <div className="card-body">
-        <h6 className="card-title">{company.name}
+        <h6 className="card-title text-left">{company.name}
           <img src={company.logoUrl} className="float-right ml-5" alt=''></img>
         </h6>
-        <p> <small>{company.description}</small></p>
+        <p className='text-left pr-5'> <small>{company.description}</small></p>
       </div>
     </Link>
   )

@@ -54,7 +54,7 @@ function CompanyList() {
   if (isLoading) return LoadingSpinner;
 
   return (
-    <div className='CompanyList col-md-8 offset-md-2'>
+    <div className='CompanyList col-md-6 offset-md-3'>
       <SearchForm name='name'
         addSearchFilters={addSearchFilters}
         formInputNameAttr="name"
