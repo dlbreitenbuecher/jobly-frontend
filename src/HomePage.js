@@ -10,31 +10,46 @@ function HomePage() {
   function renderWelcomeMsgOrButtons() {
     if (currentUser) {
       return (
-        <>
-          <p className='username'>Welcome Back, {currentUser.username}</p>
-        </>
+        <div className='HomePage-flex-item'>
+          <p className='username'>Welcome Back, {currentUser.username}!</p>
+        </div>
       )
     } else {
       return (
-        <>
-          <Link className="btn btn-primary font-weight-bold mr-3" to="/login"> Log in </Link>
-          <Link className="btn btn-primary font-weigh-bold" to="/signup"> Sign Up</Link>
-        </>
+        <div>
+          <Link className="btn btn-primary font-weight-bold mr-3 HomePage-button" to="/login"> Log in </Link>
+          <Link className="btn btn-primary font-weigh-bold HomePage-button" to="/signup"> Sign Up</Link>
+        </div>
       )
     }
   }
 
+  // return (
+  //   <div className="HomePage">
+  //     <div className='HomePage-image'>
+  //       <div className='HomePage-welcome container text-center bg-light'>
+  //         <div className='text-center pt-5'>
+  //         <h1 className='mb-4 font-weight-bold'>Jobly <p className='lead pl-3 d-inline'>Apply Yourself</p></h1>
+  //         {renderWelcomeMsgOrButtons()}
+  //         </div>
+  //       </div>
+  //     </div>
+  //   </div>
+  // )
+
+
   return (
     <div className="HomePage">
       <div className='HomePage-image'>
-        <div className='container text-center'>
-          <div className='text-center pt-5'>
-          <h1 className='mb-4 font-weight-bold'>Jobly <p className='lead pl-3 d-inline'>Apply Yourself</p></h1>
+        <div className='HomePage-jumbotron'>
+          <div className='HomePage-flex-item'>
+            <h1>Jobly</h1>
+            <p>Apply Yourself</p>
+          </div>
           {renderWelcomeMsgOrButtons()}
           </div>
         </div>
       </div>
-    </div>
   )
 }
 

@@ -8,11 +8,35 @@
     /* padding-bottom: 1em; */
     height: calc(100vh - 56px);
     width: 100vw;
+    display: flex;
+    align-items: center;
+}
+.HomePage-jumbotron {
+    background: #69b1f865;
+    margin-left: auto;
+    margin-right: auto;
+    height: 35%;
+    width: 30%;
+    margin-top: -10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.username {
-    font-size: 1.25rem;
+.HomePage-flex-item {
+    vertical-align: center;
 }
+
+.HomePage-button {
+    margin-top: 1.5rem;
+    color: purple;
+}
+.username {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+}
+
 
 /* .jumbotron {
     background-image: url(assets/vecteezy_vector-illustration-of-urban-landscape-with-city-skyline-and-building-isolated-on-white-background_655246/city_scape-01.jpg);
