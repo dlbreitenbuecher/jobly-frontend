@@ -36,30 +36,6 @@ function SignupForm({ initialFormData, signup }) {
     } else {
       setFormErrors(result.errors);
     }
-
-    // try {
-    //   await signup(formData);
-    //   history.push('/companies');
-    // } catch(err) {
-    //   setFormErrors(err);
-    // setFormData(initialFormData);
-  }
-
-  function renderFormInputs() {
-    return Object.keys(initialFormData).map((input) => (
-      <div className="form-group">
-        <label htmlFor={input}>{input}</label>
-        <input
-          id={`signup-${input}`}
-          name={input}
-          className="form-control"
-          placeholder={input}
-          onChange={handleChange}
-          value={formData[input]}
-          aria-label={input}
-        />
-      </div>
-    ));
   }
 
   return (

@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import CurrentUserContext from './CurrentUserContext';
 import AlertMessages from '../common/AlertMessages';
-import { useHistory } from 'react-router-dom';
 
 /**Display signup Form
  *
