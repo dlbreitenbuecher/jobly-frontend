@@ -69,7 +69,7 @@ function SignupForm({ initialFormData, signup }) {
     <div className='SignupForm'>
       <div className='container col-md-6 offset-md-3 col-lg-4 offset-lg-4'>
         <h2 className='mb-3 mt-5'>Sign Up</h2>
-        <div className='card'>
+        <div className='card text-left'>
           <div className='card-body'>
             <form onSubmit={handleSubmit} className='SignupForm'>
 
@@ -131,7 +131,7 @@ function SignupForm({ initialFormData, signup }) {
                 ? <AlertMessages type='danger' messages={formErrors} />
                 : null}
 
-              <button className='btn btn-primary'>
+              <button className='btn btn-primary btn-block mt-4'>
                 Submit
               </button>
 

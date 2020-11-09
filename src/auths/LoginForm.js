@@ -30,7 +30,7 @@ function LoginForm({ initialFormData, login }) {
     <div className="LoginForm">
       <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
         <h3 className="mb-3 mt-5">Log In</h3>
-        <div className="card">
+        <div className="card text-left">
           <div className="card-body">
 
             <form onSubmit={handleSubmit}>
@@ -67,7 +67,7 @@ function LoginForm({ initialFormData, login }) {
                   messages={formErrors}
                 />
                 : null}
-              <button className="btn btn-primary">Submit</button>
+              <button className="btn btn-primary btn-block mt-4">Submit</button>
             </form>
           </div>
         </div>
