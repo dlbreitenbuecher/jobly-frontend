@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from 'react-router-dom';
 import decode from 'jwt-decode';
 import Routes from './routes/Routes';
 import NavigationBar from './nav/NavigationBar';
@@ -11,31 +11,31 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 // Key name for storing token in localStorage in case page refreshes
-export const TOKEN_STORAGE_ID = "jobly-token";
+export const TOKEN_STORAGE_ID = 'jobly-token';
 
 /** Jobly App
- * 
+ *
  * State :
- *  - currentUser: 
- *      User obj from API. Once retrieved, it is stored in context (CurrentUserContext). 
+ *  - currentUser:
+ *      User obj from API. Once retrieved, it is stored in context (CurrentUserContext).
  *      Read by other components to see if user is logged in
  *        { username, firstName, lastName, isAdmin, applications }
  *          where applications is [jobID,...]
- * 
+ *
  * - applicationID:
  *      Current user applications
  *        (Set) [jobID,...]
- * 
- *  - token: 
+ *
+ *  - token:
  *      Authentication JWT received when a user logs in / signs up
  *      Required for most API calls. When a user logs in or signs up, token is saved
  *      to local storage in case the page refreshes
- * 
+ *
  *  - infoLoaded:
  *      Manages the loading spinner
- * 
+ *
  * App -> { NavBar, Routes }
-*/
+ */
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [applicationIDs, setApplicationIDs] = useState(new Set([]));
@@ -44,38 +44,40 @@ function App() {
   // const [token, setToken] = useState(storedToken || null);
   // const storedToken = localStorage.getItem('token')
 
-
   // runs after first render and when token changes
-  useEffect(function fetchUserOnTokenChange() {
-    async function fetchUser() {
-      if (token) {
-        try {
-          const payload = decode(token);
-          JoblyApi.token = token;
-          const user = await JoblyApi.getUser(payload.username);
-          setCurrentUser(user);
-          setApplicationIDs(new Set(user.applications));
-        } catch (errors) {
-          console.error('Error loading the user!', errors)
-          setCurrentUser(null);
+  useEffect(
+    function fetchUserOnTokenChange() {
+      async function fetchUser() {
+        if (token) {
+          try {
+            const payload = decode(token);
+            JoblyApi.token = token;
+            const user = await JoblyApi.getUser(payload.username);
+            setCurrentUser(user);
+            setApplicationIDs(new Set(user.applications));
+          } catch (errors) {
+            console.error('Error loading the user!', errors);
+            setCurrentUser(null);
+          }
         }
+        // loading spinner will not render
+        setInfoLoaded(true);
       }
-      // loading spinner will not render
-      setInfoLoaded(true);
-    }
 
-    // sets infoLoaded to false - this renders the loading spinner as fetchUser runs
-    // once fetchUser finishes running, the loading spinner will not be present after
-    // the rerender triggered by fetchUser
-    setInfoLoaded(false);
-    fetchUser();
-  }, [token]);
+      // sets infoLoaded to false - this renders the loading spinner as fetchUser runs
+      // once fetchUser finishes running, the loading spinner will not be present after
+      // the rerender triggered by fetchUser
+      setInfoLoaded(false);
+      fetchUser();
+    },
+    [token],
+  );
 
   /** Signs user up
-   * 
-   * Upon signup, the user's token is saved both to the JoblyAPI class and 
+   *
+   * Upon signup, the user's token is saved both to the JoblyAPI class and
    * local storage (see the useEffect above). Therefore, the user is treated as being
-   * logged in on sign up is successful 
+   * logged in on sign up is successful
    */
   async function signup(signupData) {
     try {
@@ -89,7 +91,7 @@ function App() {
   }
 
   /**Logs user in
-   * 
+   *
    * Upon login, user's token is saved both to the JoblyAPI class
    * and local storage
    */
@@ -107,7 +109,10 @@ function App() {
   /**Updates a user's profile */
   async function updateProfile(updateData) {
     try {
-      const user = await JoblyApi.updateUser(currentUser.username, updateData);
+      const user = await JoblyApi.updateUser(
+        currentUser.username,
+        updateData,
+      );
       setCurrentUser(user);
       return { success: true };
     } catch (errors) {
@@ -143,8 +148,15 @@ function App() {
 
   return (
     <BrowserRouter>
-      <CurrentUserContext.Provider value={{ currentUser, setCurrentUser, hasApplicationID, applyToJob }}>
-        <div className='App'>
+      <CurrentUserContext.Provider
+        value={{
+          currentUser,
+          setCurrentUser,
+          hasApplicationID,
+          applyToJob,
+        }}
+      >
+        <div className="App">
           <NavigationBar logout={logout} />
           <Routes
             signup={signup}
@@ -156,6 +168,5 @@ function App() {
     </BrowserRouter>
   );
 }
-
 
 export default App;
