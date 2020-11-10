@@ -26,7 +26,7 @@ function HomePage() {
             Log in{' '}
           </Link>
           <Link
-            className="btn btn-primary font-weigh-bold HomePage-button"
+            className="btn btn-primary font-weight-bold HomePage-button"
             to="/signup"
           >
             {' '}

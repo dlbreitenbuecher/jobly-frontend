@@ -38,7 +38,7 @@ function SearchForm({
   }
 
   return (
-    <div className="SearchForm my-4 ">
+    <div className="SearchForm my-4 mt-5">
       <form onSubmit={handleSubmit} className="form-inline">
         <input
           type="text"

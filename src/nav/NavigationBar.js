@@ -50,12 +50,12 @@ function NavigationBar({ logout }) {
         <ul className="navbar-nav ml-auto">
           <li className="nav-item mr-4">
             <NavLink to="/login" className="nav-link">
-              Login
+              Log in
             </NavLink>
           </li>
           <li className="nav-item mr-4">
             <NavLink to="/signup" className="nav-link">
-              Signup
+              Sign up
             </NavLink>
           </li>
         </ul>
