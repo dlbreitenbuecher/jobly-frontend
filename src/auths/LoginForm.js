@@ -76,8 +76,8 @@ function LoginForm({ initialFormData, login }) {
 //TODO: Remove these before deploying
 LoginForm.defaultProps = {
   initialFormData: {
-    username: 'testuser3',
-    password: 'password',
+    username: '',
+    password: '',
   },
 };
 
