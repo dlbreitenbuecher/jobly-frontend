@@ -22,15 +22,13 @@ function HomePage() {
             className="btn btn-primary font-weight-bold mr-3 HomePage-button"
             to="/login"
           >
-            {' '}
-            Log in{' '}
+            Log in
           </Link>
           <Link
             className="btn btn-primary font-weight-bold HomePage-button"
             to="/signup"
           >
-            {' '}
-            Sign Up
+            Sign up
           </Link>
         </div>
       );
@@ -43,7 +41,7 @@ function HomePage() {
         <div className="HomePage-jumbotron">
           <div className="HomePage-flex-item">
             <h1>Jobly</h1>
-            <p>Apply Yourself</p>
+            <p className='font-italic lead'>Apply Yourself</p>
           </div>
           {renderWelcomeMsgOrButtons()}
         </div>
