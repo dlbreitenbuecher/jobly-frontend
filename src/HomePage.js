@@ -9,8 +9,8 @@ function HomePage() {
   function renderWelcomeMsgOrButtons() {
     if (currentUser) {
       return (
-        <div className="HomePage-flex-item">
-          <p className="HomePage-username">
+        <div className='HomePage-flex-item'>
+          <p className='HomePage-username'>
             Welcome Back, {currentUser.username}!
           </p>
         </div>
@@ -19,14 +19,14 @@ function HomePage() {
       return (
         <div>
           <Link
-            className="btn btn-primary font-weight-bold mr-3 HomePage-button"
-            to="/login"
+            className='btn btn-primary font-weight-bold mr-3 HomePage-button'
+            to='/login'
           >
             Log in
           </Link>
           <Link
-            className="btn btn-primary font-weight-bold HomePage-button"
-            to="/signup"
+            className='btn btn-primary font-weight-bold HomePage-button'
+            to='/signup'
           >
             Sign up
           </Link>
@@ -36,10 +36,10 @@ function HomePage() {
   }
 
   return (
-    <div className="HomePage">
-      <div className="HomePage-image">
-        <div className="HomePage-jumbotron">
-          <div className="HomePage-flex-item">
+    <div className='HomePage'>
+      <div className='HomePage-image'>
+        <div className='HomePage-jumbotron'>
+          <div className='HomePage-flex-item'>
             <h1>Jobly</h1>
             <p className='font-italic lead'>Apply Yourself</p>
           </div>

@@ -11,19 +11,19 @@ import './CompanyCard.css';
 function CompanyCard({ company }) {
   return (
     <Link
-      className="CompanyCard card"
+      className='CompanyCard card'
       to={`/companies/${company.handle}`}
     >
-      <div className="card-body">
-        <h6 className="card-title text-left">
+      <div className='card-body'>
+        <h6 className='card-title text-left'>
           {company.name}
           <img
             src={company.logoUrl}
-            className="float-right ml-5"
-            alt=""
+            className='float-right ml-5'
+            alt=''
           ></img>
         </h6>
-        <p className="text-left pr-5">
+        <p className='text-left pr-5'>
           {' '}
           <small>{company.description}</small>
         </p>

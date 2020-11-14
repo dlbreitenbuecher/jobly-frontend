@@ -27,42 +27,42 @@ function LoginForm({ initialFormData, login }) {
   }
 
   return (
-    <div className="LoginForm">
-      <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-        <h3 className="mb-3 mt-5">Log In</h3>
-        <div className="card text-left">
-          <div className="card-body">
+    <div className='LoginForm'>
+      <div className='container col-md-6 offset-md-3 col-lg-4 offset-lg-4'>
+        <h3 className='mb-3 mt-5'>Log In</h3>
+        <div className='card text-left'>
+          <div className='card-body'>
             <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="login-username">Username</label>
+              <div className='form-group'>
+                <label htmlFor='login-username'>Username</label>
                 <input
-                  id="login-username"
-                  name="username"
-                  className="form-control"
-                  placeholder="Username"
+                  id='login-username'
+                  name='username'
+                  className='form-control'
+                  placeholder='Username'
                   onChange={handleChange}
                   value={formData.username}
-                  aria-label="Username"
+                  aria-label='Username'
                 />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="login-password">Password</label>
+              <div className='form-group'>
+                <label htmlFor='login-password'>Password</label>
                 <input
-                  id="login-password"
-                  name="password"
-                  className="form-control"
-                  placeholder="Password"
+                  id='login-password'
+                  name='password'
+                  className='form-control'
+                  placeholder='Password'
                   onChange={handleChange}
                   value={formData.password}
-                  aria-label="Password"
+                  aria-label='Password'
                 />
               </div>
 
               {formErrors.length ? (
-                <AlertMessages type="danger" messages={formErrors} />
+                <AlertMessages type='danger' messages={formErrors} />
               ) : null}
-              <button className="btn btn-primary btn-block mt-4">
+              <button className='btn btn-primary btn-block mt-4'>
                 Submit
               </button>
             </form>

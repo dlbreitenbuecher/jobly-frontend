@@ -38,17 +38,17 @@ function SearchForm({
   }
 
   return (
-    <div className="SearchForm my-4 mt-5">
-      <form onSubmit={handleSubmit} className="form-inline">
+    <div className='SearchForm my-4 mt-5'>
+      <form onSubmit={handleSubmit} className='form-inline'>
         <input
-          type="text"
+          type='text'
           name={formInputNameAttr}
           value={formData.name}
-          placeholder="Enter a search term..."
+          placeholder='Enter a search term...'
           onChange={handleChange}
-          className="form-control form-control-lg flex-grow-1"
+          className='form-control form-control-lg flex-grow-1'
         />
-        <button className="btn btn-lg btn-primary">Search</button>
+        <button className='btn btn-lg btn-primary'>Search</button>
       </form>
     </div>
   );

@@ -30,37 +30,37 @@ import ProtectedRoute from './ProtectedRoute.js';
  * */
 function Routes({ signup, login, updateProfile }) {
   return (
-    <div className="Routes">
+    <div className='Routes'>
       <Switch>
-        <Route exact path="/">
+        <Route exact path='/'>
           <HomePage />
         </Route>
 
-        <ProtectedRoute exact path="/companies">
+        <ProtectedRoute exact path='/companies'>
           <CompanyList />
         </ProtectedRoute>
 
-        <ProtectedRoute exact path="/companies/:companyName">
+        <ProtectedRoute exact path='/companies/:companyName'>
           <CompanyDetail />
         </ProtectedRoute>
 
-        <ProtectedRoute exact path="/jobs">
+        <ProtectedRoute exact path='/jobs'>
           <JobCardList />
         </ProtectedRoute>
 
-        <Route exact path="/login">
+        <Route exact path='/login'>
           <LoginForm login={login} />
         </Route>
 
-        <Route exact path="/signup">
+        <Route exact path='/signup'>
           <SignupForm signup={signup} />
         </Route>
 
-        <ProtectedRoute exact path="/profile">
+        <ProtectedRoute exact path='/profile'>
           <ProfileForm updateProfile={updateProfile} />
         </ProtectedRoute>
 
-        <Redirect to="/" />
+        <Redirect to='/' />
       </Switch>
     </div>
   );

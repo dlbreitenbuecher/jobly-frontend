@@ -47,14 +47,14 @@ function NavigationBar({ logout }) {
   function showLoggedinOrSignupNavs() {
     if (!currentUser) {
       return (
-        <ul className="navbar-nav ml-auto">
-          <li className="nav-item mr-4">
-            <NavLink to="/login" className="nav-link">
+        <ul className='navbar-nav ml-auto'>
+          <li className='nav-item mr-4'>
+            <NavLink to='/login' className='nav-link'>
               Log in
             </NavLink>
           </li>
-          <li className="nav-item mr-4">
-            <NavLink to="/signup" className="nav-link">
+          <li className='nav-item mr-4'>
+            <NavLink to='/signup' className='nav-link'>
               Sign up
             </NavLink>
           </li>
@@ -62,24 +62,24 @@ function NavigationBar({ logout }) {
       );
     } else {
       return (
-        <ul className="navbar-nav ml-auto">
-          <li className="nav-item mr-4">
-            <NavLink to="/companies" className="nav-link">
+        <ul className='navbar-nav ml-auto'>
+          <li className='nav-item mr-4'>
+            <NavLink to='/companies' className='nav-link'>
               Companies
             </NavLink>
           </li>
-          <li className="nav-item mr-4">
-            <NavLink to="/jobs" className="nav-link">
+          <li className='nav-item mr-4'>
+            <NavLink to='/jobs' className='nav-link'>
               Jobs
             </NavLink>
           </li>
-          <li className="nav-item mr-4">
-            <NavLink to="/profile" className="nav-link">
+          <li className='nav-item mr-4'>
+            <NavLink to='/profile' className='nav-link'>
               Profile
             </NavLink>
           </li>
-          <li className="nav-item mr-4">
-            <Link onClick={logout} to="/" className="nav-link">
+          <li className='nav-item mr-4'>
+            <Link onClick={logout} to='/' className='nav-link'>
               Log out {currentUser.username}
             </Link>
           </li>
@@ -89,15 +89,15 @@ function NavigationBar({ logout }) {
   }
 
   return (
-    <nav className="NavigationBar navbar navbar-expand-md bg-light">
-      <NavLink exact to="/" className="navbar-brand">
+    <nav className='NavigationBar navbar navbar-expand-md bg-light'>
+      <NavLink exact to='/' className='navbar-brand'>
         Jobly
       </NavLink>
 
       {/* Hamburger Menu */}
       <NavbarToggler
         onClick={toggleNavbar}
-        className="mr-2 navbar-light"
+        className='mr-2 navbar-light'
       />
       <Collapse isOpen={!collapsed} navbar>
         {showLoggedinOrSignupNavs()}

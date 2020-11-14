@@ -43,7 +43,7 @@ function CompanyList() {
   function renderCompanies() {
     if (companies.length > 0) {
       return companies.map((company) => (
-        <div className="CompanyList-list">
+        <div className='CompanyList-list'>
           <CompanyCard company={company} key={company.handle} />
         </div>
       ));
@@ -55,12 +55,12 @@ function CompanyList() {
   if (isLoading) return LoadingSpinner;
 
   return (
-    <div className="CompanyList col-md-6 offset-md-3">
+    <div className='CompanyList col-md-6 offset-md-3'>
       <SearchForm
-        name="name"
+        name='name'
         addSearchFilters={addSearchFilters}
-        formInputNameAttr="name"
-        redirectRoute="/companies"
+        formInputNameAttr='name'
+        redirectRoute='/companies'
       />
       {renderCompanies()}
     </div>

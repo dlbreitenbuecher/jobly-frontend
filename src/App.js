@@ -156,7 +156,7 @@ function App() {
           applyToJob,
         }}
       >
-        <div className="App">
+        <div className='App'>
           <NavigationBar logout={logout} />
           <Routes
             signup={signup}

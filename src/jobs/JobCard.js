@@ -37,33 +37,34 @@ function JobCard({ job }) {
   }
 
   return (
-    <div className="JobCard card">
-      <div className="card-body">
-        <h6 className="card-title text-left lead">{job.title}</h6>
+    <div className='JobCard card'>
+      <div className='card-body'>
+        <h6 className='card-title text-left lead'>{job.title}</h6>
         {job.companyName ? (
-          <h4 className="text-left pt-1">
+          <h4 className='text-left pt-1'>
             <Link to={`/companies/${job.companyHandle}`}>
-            {job.companyName}
+              {job.companyName}
             </Link>
           </h4>
         ) : null}
-        <p className="text-left pt-2">Salary: {job.salary ? job.salary : 0}</p>
+        <p className='text-left pt-2'>
+          Salary: {job.salary ? job.salary : 0}
+        </p>
 
         <button
-          className="btn btn-danger font-weight-bold text-uppercase float-right"
+          className='btn btn-danger font-weight-bold text-uppercase float-right'
           disabled={applied}
           onClick={handleClick}
         >
           {applied ? 'Applied' : 'Apply'}
         </button>
 
-        <p className="text-left small">
+        <p className='text-left small'>
           Equity: {job.equity ? job.equity : 0}
         </p>
       </div>
     </div>
   );
-
 }
 
 export default JobCard;

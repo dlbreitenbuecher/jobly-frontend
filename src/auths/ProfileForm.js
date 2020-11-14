@@ -55,79 +55,79 @@ function ProfileForm({ updateProfile }) {
   }
 
   return (
-    <div className="col-md-6 col-lg-4 offset-md-3 offset-lg-4">
-      <h3 className="mb-3 mt-5">Profile</h3>
-      <div className="card">
-        <div className="card-body text-left">
-          <form onSubmit={handleSubmit} className="SignupForm">
-            <div className="form-group">
+    <div className='col-md-6 col-lg-4 offset-md-3 offset-lg-4'>
+      <h3 className='mb-3 mt-5'>Profile</h3>
+      <div className='card'>
+        <div className='card-body text-left'>
+          <form onSubmit={handleSubmit} className='SignupForm'>
+            <div className='form-group'>
               <label>Username</label>
-              <p className="lead">{currentUser.username}</p>
+              <p className='lead'>{currentUser.username}</p>
             </div>
 
-            <div className="form-group">
-              <label htmlFor="Profile-firstName">First Name</label>
+            <div className='form-group'>
+              <label htmlFor='Profile-firstName'>First Name</label>
               <input
-                id="Profile-firstName"
-                name="firstName"
-                className="form-control"
+                id='Profile-firstName'
+                name='firstName'
+                className='form-control'
                 onChange={handleChange}
                 value={formData.firstName}
-                aria-label="firstName"
+                aria-label='firstName'
               />
             </div>
 
-            <div className="form-group">
-              <label htmlFor="Profile-lastName">Last Name</label>
+            <div className='form-group'>
+              <label htmlFor='Profile-lastName'>Last Name</label>
               <input
-                id="Profile-lastName"
-                name="lastName"
-                className="form-control"
+                id='Profile-lastName'
+                name='lastName'
+                className='form-control'
                 onChange={handleChange}
                 value={formData.lastName}
-                aria-label="lastName"
+                aria-label='lastName'
               />
             </div>
 
-            <div className="form-group">
-              <label htmlFor="Profile-email">Email</label>
+            <div className='form-group'>
+              <label htmlFor='Profile-email'>Email</label>
               <input
-                id="Profile-email"
-                name="email"
-                className="form-control"
+                id='Profile-email'
+                name='email'
+                className='form-control'
                 onChange={handleChange}
                 value={formData.email}
-                aria-label="email"
+                aria-label='email'
               />
             </div>
 
-            <div className="form-group">
-              <label htmlFor="Profile-password">
+            <div className='form-group'>
+              <label htmlFor='Profile-password'>
                 Confirm Password to Make Changes
               </label>
               <input
-                id="Profile-password"
-                type="password"
-                name="password"
-                className="form-control"
+                id='Profile-password'
+                type='password'
+                name='password'
+                className='form-control'
                 onChange={handleChange}
                 value={formData.password}
-                aria-label="email"
+                aria-label='email'
               />
             </div>
 
             {formErrors.length ? (
-              <AlertMessages type="danger" messages={formErrors} />
+              <AlertMessages type='danger' messages={formErrors} />
             ) : null}
 
             {formSuccess ? (
               <AlertMessages
-                type="success"
+                type='success'
                 messages={['Profile updated successfully!']}
               />
             ) : null}
 
-            <button className="btn btn-primary btn-block mt-4">
+            <button className='btn btn-primary btn-block mt-4'>
               Save changes
             </button>
           </form>

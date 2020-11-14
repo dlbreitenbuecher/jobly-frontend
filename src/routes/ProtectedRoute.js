@@ -19,7 +19,7 @@ function ProtectedRoute({ exact, path, children }) {
   const { currentUser } = useContext(CurrentUserContext);
 
   if (!currentUser) {
-    return <Redirect to="/login" />;
+    return <Redirect to='/login' />;
   }
 
   return (

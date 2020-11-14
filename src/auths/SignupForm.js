@@ -39,71 +39,71 @@ function SignupForm({ initialFormData, signup }) {
   }
 
   return (
-    <div className="SignupForm">
-      <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-        <h2 className="mb-3 mt-5">Sign Up</h2>
-        <div className="card text-left">
-          <div className="card-body">
-            <form onSubmit={handleSubmit} className="SignupForm">
-              <div className="form-group">
-                <label htmlFor="signup-username">Username</label>
+    <div className='SignupForm'>
+      <div className='container col-md-6 offset-md-3 col-lg-4 offset-lg-4'>
+        <h2 className='mb-3 mt-5'>Sign Up</h2>
+        <div className='card text-left'>
+          <div className='card-body'>
+            <form onSubmit={handleSubmit} className='SignupForm'>
+              <div className='form-group'>
+                <label htmlFor='signup-username'>Username</label>
                 <input
-                  id="signup-username"
-                  name="username"
-                  className="form-control"
+                  id='signup-username'
+                  name='username'
+                  className='form-control'
                   value={formData.username}
                   onChange={handleChange}
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="signup-password">Password</label>
+              <div className='form-group'>
+                <label htmlFor='signup-password'>Password</label>
                 <input
-                  type="password"
-                  id="signup-password"
-                  name="password"
-                  className="form-control"
+                  type='password'
+                  id='signup-password'
+                  name='password'
+                  className='form-control'
                   value={formData.password}
                   onChange={handleChange}
                 />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="signup-firstname">First name</label>
+              <div className='form-group'>
+                <label htmlFor='signup-firstname'>First name</label>
                 <input
-                  id="signup-firstName"
-                  name="firstName"
-                  className="form-control"
+                  id='signup-firstName'
+                  name='firstName'
+                  className='form-control'
                   value={formData.firstName}
                   onChange={handleChange}
                 />
               </div>
-              <div className="form-group">
-                <label htmlfor="signup-lastname">Last name</label>
+              <div className='form-group'>
+                <label htmlfor='signup-lastname'>Last name</label>
                 <input
-                  id="signup-lastName"
-                  name="lastName"
-                  className="form-control"
+                  id='signup-lastName'
+                  name='lastName'
+                  className='form-control'
                   value={formData.lastName}
                   onChange={handleChange}
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="signup-email">Email</label>
+              <div className='form-group'>
+                <label htmlFor='signup-email'>Email</label>
                 <input
-                  type="email"
-                  id="signup-email"
-                  name="email"
-                  className="form-control"
+                  type='email'
+                  id='signup-email'
+                  name='email'
+                  className='form-control'
                   value={formData.email}
                   onChange={handleChange}
                 />
               </div>
 
               {formErrors.length ? (
-                <AlertMessages type="danger" messages={formErrors} />
+                <AlertMessages type='danger' messages={formErrors} />
               ) : null}
 
-              <button className="btn btn-primary btn-block mt-4">
+              <button className='btn btn-primary btn-block mt-4'>
                 Submit
               </button>
             </form>

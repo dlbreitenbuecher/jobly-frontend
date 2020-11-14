@@ -5,7 +5,7 @@ function AlertMessages({ type = 'danger', messages = [] }) {
   return (
     <Alert color={type}>
       {messages.map((message) => (
-        <p className="mb-0 small" key={message}>
+        <p className='mb-0 small' key={message}>
           {message}
         </p>
       ))}
